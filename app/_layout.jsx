@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import ListMotoScreen from "./ListMotoScreen";
-import MapScreen from "./MapScreen";
+import ListMotoScreen from "./ListMotoScreen/ListMotoScreen";
+import MapScreen from "./MapScreen/MapScreen";
 
 const Stack = createStackNavigator();
 
