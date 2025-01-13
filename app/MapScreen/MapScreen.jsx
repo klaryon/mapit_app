@@ -13,8 +13,9 @@ import { useNavigation } from "@react-navigation/native";
 import { styles } from "../MapScreen/Styles";
 import useApi from "../../hooks/useApi";
 import { fetchDataById } from "@/api/apiEndpoints";
-import images from "../../constants/images";
+import images from "../../constants/Images";
 import text from "../../constants/text";
+import colors from "../../constants/Colors";
 
 const MapScreen = ({ route }) => {
   const { id } = route.params;
@@ -24,7 +25,7 @@ const MapScreen = ({ route }) => {
 
   if (loading) {
     <View style={styles.indicator}>
-      <ActivityIndicator size="large" color="#dc182d" />
+      <ActivityIndicator size="large" color={colors.red} />
     </View>;
   }
 

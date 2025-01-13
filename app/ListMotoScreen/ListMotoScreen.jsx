@@ -12,7 +12,8 @@ import { useNavigation } from "@react-navigation/native";
 import { styles } from "../ListMotoScreen/Styles";
 import useApi from "../../hooks/useApi";
 import { fetchBaseData } from "@/api/apiEndpoints";
-import images from "../../constants/images";
+import images from "../../constants/Images";
+import colors from "../../constants/Colors";
 
 const ListMotoScreen = () => {
   const navigation = useNavigation();
@@ -21,7 +22,7 @@ const ListMotoScreen = () => {
   if (loading) {
     return (
       <View style={styles.indicator}>
-        <ActivityIndicator size="large" color="#dc182d" />
+        <ActivityIndicator size="large" color={colors.red} />
       </View>
     );
   }
