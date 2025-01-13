@@ -11,7 +11,7 @@ Includes 3 screens:
 - Screen C:
   - Confirmation Modal
   - Includes one button with ok text that closes it, and goes back to screen B.
-  - 
+
 By Clarissa Ardon 🌠
 
 # Welcome to your Expo app 👋
