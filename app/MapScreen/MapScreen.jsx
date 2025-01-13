@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
-import { styles } from "./Styles";
+import { styles } from "../MapScreen/Styles";
 import useApi from "../../hooks/useApi";
 import { fetchDataById } from "@/api/apiEndpoints";
 import images from "../../constants/images";

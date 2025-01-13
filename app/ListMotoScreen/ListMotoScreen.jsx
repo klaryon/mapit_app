@@ -9,7 +9,7 @@ import {
   Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { styles } from "./Styles";
+import { styles } from "../ListMotoScreen/Styles";
 import useApi from "../../hooks/useApi";
 import { fetchBaseData } from "@/api/apiEndpoints";
 import images from "../../constants/images";
