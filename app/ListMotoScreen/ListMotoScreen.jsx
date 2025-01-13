@@ -4,7 +4,6 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
-  ActivityIndicator,
   View,
   Image,
 } from "react-native";
@@ -13,7 +12,9 @@ import { styles } from "../ListMotoScreen/Styles";
 import useApi from "../../hooks/useApi";
 import { fetchBaseData } from "@/api/apiEndpoints";
 import images from "../../constants/Images";
+import text from "../../constants/text";
 import colors from "../../constants/Colors";
+import IndicatorActivity from "../../components/atoms/IndicatorActivity/IndicatorActivity";
 
 const ListMotoScreen = () => {
   const navigation = useNavigation();
@@ -21,14 +22,20 @@ const ListMotoScreen = () => {
 
   if (loading) {
     return (
-      <View style={styles.indicator}>
-        <ActivityIndicator size="large" color={colors.red} />
-      </View>
+      <IndicatorActivity
+        size="large"
+        color={colors.red}
+        testID="loading-indicator"
+      />
     );
   }
 
   if (error) {
-    return <Text>Error: {error}</Text>;
+    return (
+      <Text>
+        {text.error} {error}
+      </Text>
+    );
   }
 
   return (

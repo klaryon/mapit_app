@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  SafeAreaView,
-  View,
-  Text,
-  TouchableOpacity,
-  ActivityIndicator,
-  Modal,
-  Image,
-} from "react-native";
+import { SafeAreaView, View, Text, Modal, Image } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "../MapScreen/Styles";
@@ -16,6 +8,8 @@ import { fetchDataById } from "@/api/apiEndpoints";
 import images from "../../constants/Images";
 import text from "../../constants/text";
 import colors from "../../constants/Colors";
+import IndicatorActivity from "../../components/atoms/IndicatorActivity/IndicatorActivity";
+import FlexButton from "../../components/atoms/FlexButton/FlexButton";
 
 const MapScreen = ({ route }) => {
   const { id } = route.params;
@@ -24,9 +18,13 @@ const MapScreen = ({ route }) => {
   const { data, loading, error } = useApi(() => fetchDataById(id));
 
   if (loading) {
-    <View style={styles.indicator}>
-      <ActivityIndicator size="large" color={colors.red} />
-    </View>;
+    return (
+      <IndicatorActivity
+        size="large"
+        color={colors.red}
+        testID="loading-indicator"
+      />
+    );
   }
 
   if (error) {
@@ -59,21 +57,19 @@ const MapScreen = ({ route }) => {
       </MapView>
 
       <View style={styles.paddingMapFooter}>
-        <TouchableOpacity
+        <FlexButton
+          title={text.bookMoto}
           onPress={() => setOpenModal(!openModal)}
-          style={styles.buttonPrimary}
-        >
-          <Text style={styles.buttonPrimaryText}>{text.bookMoto}</Text>
-        </TouchableOpacity>
+          type="primary"
+        />
 
         <View style={styles.spacer} />
 
-        <TouchableOpacity
+        <FlexButton
+          title={text.goBack}
           onPress={() => navigation.navigate("ListMotoScreen")}
-          style={styles.buttonSecondary}
-        >
-          <Text style={styles.buttonSecondaryText}>{text.goBack}</Text>
-        </TouchableOpacity>
+          type="secondary"
+        />
       </View>
 
       <Modal visible={openModal} animationType="slide">
@@ -84,12 +80,11 @@ const MapScreen = ({ route }) => {
           <Text style={styles.modalTitle}>{text.confirmedMoto}</Text>
         </View>
         <View style={styles.paddingButton}>
-          <TouchableOpacity
+          <FlexButton
+            title={text.ok}
             onPress={() => setOpenModal(!openModal)}
-            style={styles.buttonPrimary}
-          >
-            <Text style={styles.buttonPrimaryText}>{text.ok}</Text>
-          </TouchableOpacity>
+            type="primary"
+          />
         </View>
       </Modal>
     </SafeAreaView>
