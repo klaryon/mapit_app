@@ -1,4 +1,4 @@
-# Mapit App - Motorcycle App 🏍️
+# Mapit - Motorcycle App 🏍️
 
 Includes 3 screens:
 - Screen A:
