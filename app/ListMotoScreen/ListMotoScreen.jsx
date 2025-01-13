@@ -4,36 +4,43 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
-  ActivityIndicator,
   View,
   Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { styles } from "../ListMotoScreen/Styles";
 import useApi from "../../hooks/useApi";
-import { styles } from "./Styles";
+import { fetchBaseData } from "@/api/apiEndpoints";
+import images from "../../constants/Images";
+import text from "../../constants/text";
+import colors from "../../constants/Colors";
+import IndicatorActivity from "../../components/atoms/IndicatorActivity/IndicatorActivity";
 
 const ListMotoScreen = () => {
   const navigation = useNavigation();
-  const { data, loading, error } = useApi("https://fake.prod.mapit.me/motos");
+  const { data, loading, error } = useApi(fetchBaseData);
 
   if (loading) {
     return (
-      <View style={styles.indicator}>
-        <ActivityIndicator size="large" color="#dc182d" />
-      </View>
+      <IndicatorActivity
+        size="large"
+        color={colors.red}
+        testID="loading-indicator"
+      />
     );
   }
 
   if (error) {
-    return <Text>Error: {error}</Text>;
+    return (
+      <Text>
+        {text.error} {error}
+      </Text>
+    );
   }
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Image
-        source={require("../../assets/images/mapit_logo.png")}
-        style={styles.logo}
-      />
+      <Image source={images.listLogo} style={styles.logo} />
 
       <View style={styles.spacer} />
 

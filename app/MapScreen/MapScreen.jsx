@@ -1,34 +1,38 @@
 import React, { useState } from "react";
-import {
-  SafeAreaView,
-  View,
-  Text,
-  TouchableOpacity,
-  ActivityIndicator,
-  Modal,
-  Image,
-} from "react-native";
+import { SafeAreaView, View, Text, Modal, Image } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
+import { styles } from "../MapScreen/Styles";
 import useApi from "../../hooks/useApi";
-import { styles } from "./Styles";
+import { fetchDataById } from "@/api/apiEndpoints";
+import images from "../../constants/Images";
+import text from "../../constants/text";
+import colors from "../../constants/Colors";
+import IndicatorActivity from "../../components/atoms/IndicatorActivity/IndicatorActivity";
+import FlexButton from "../../components/atoms/FlexButton/FlexButton";
 
 const MapScreen = ({ route }) => {
   const { id } = route.params;
   const [openModal, setOpenModal] = useState(false);
   const navigation = useNavigation();
-  const { data, loading, error } = useApi(
-    `https://fake.prod.mapit.me/motos/${id}`
-  );
+  const { data, loading, error } = useApi(() => fetchDataById(id));
 
   if (loading) {
-    <View style={styles.indicator}>
-      <ActivityIndicator size="large" color="#dc182d" />
-    </View>;
+    return (
+      <IndicatorActivity
+        size="large"
+        color={colors.red}
+        testID="loading-indicator"
+      />
+    );
   }
 
   if (error) {
-    return <Text>Error: {error}</Text>;
+    return (
+      <Text>
+        {text.error} {error}
+      </Text>
+    );
   }
 
   return (
@@ -53,40 +57,34 @@ const MapScreen = ({ route }) => {
       </MapView>
 
       <View style={styles.paddingMapFooter}>
-        <TouchableOpacity
+        <FlexButton
+          title={text.bookMoto}
           onPress={() => setOpenModal(!openModal)}
-          style={styles.buttonPrimary}
-        >
-          <Text style={styles.buttonPrimaryText}>Solicitar Cita</Text>
-        </TouchableOpacity>
+          type="primary"
+        />
 
         <View style={styles.spacer} />
 
-        <TouchableOpacity
+        <FlexButton
+          title={text.goBack}
           onPress={() => navigation.navigate("ListMotoScreen")}
-          style={styles.buttonSecondary}
-        >
-          <Text style={styles.buttonSecondaryText}>Volver</Text>
-        </TouchableOpacity>
+          type="secondary"
+        />
       </View>
 
       <Modal visible={openModal} animationType="slide">
         <View style={styles.centeredView}>
-          <Image
-            source={require("../../assets/images/mapitme_logo.jpg")}
-            style={styles.logo}
-          />
+          <Image source={images.modalLogo} style={styles.logo} />
           <View style={styles.spacerLogo} />
 
-          <Text style={styles.modalTitle}>Moto Confirmada!</Text>
+          <Text style={styles.modalTitle}>{text.confirmedMoto}</Text>
         </View>
         <View style={styles.paddingButton}>
-          <TouchableOpacity
+          <FlexButton
+            title={text.ok}
             onPress={() => setOpenModal(!openModal)}
-            style={styles.buttonPrimary}
-          >
-            <Text style={styles.buttonPrimaryText}>OK</Text>
-          </TouchableOpacity>
+            type="primary"
+          />
         </View>
       </Modal>
     </SafeAreaView>
