@@ -9,12 +9,14 @@ import {
   Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import useApi from "../../hooks/useApi";
 import { styles } from "./Styles";
+import useApi from "../../hooks/useApi";
+import { fetchBaseData } from "@/api/apiEndpoints";
+import images from "../../constants/images";
 
 const ListMotoScreen = () => {
   const navigation = useNavigation();
-  const { data, loading, error } = useApi("https://fake.prod.mapit.me/motos");
+  const { data, loading, error } = useApi(fetchBaseData);
 
   if (loading) {
     return (
@@ -30,10 +32,7 @@ const ListMotoScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Image
-        source={require("../../assets/images/mapit_logo.png")}
-        style={styles.logo}
-      />
+      <Image source={images.listLogo} style={styles.logo} />
 
       <View style={styles.spacer} />
 

@@ -10,16 +10,17 @@ import {
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
-import useApi from "../../hooks/useApi";
 import { styles } from "./Styles";
+import useApi from "../../hooks/useApi";
+import { fetchDataById } from "@/api/apiEndpoints";
+import images from "../../constants/images";
+import text from "../../constants/text";
 
 const MapScreen = ({ route }) => {
   const { id } = route.params;
   const [openModal, setOpenModal] = useState(false);
   const navigation = useNavigation();
-  const { data, loading, error } = useApi(
-    `https://fake.prod.mapit.me/motos/${id}`
-  );
+  const { data, loading, error } = useApi(() => fetchDataById(id));
 
   if (loading) {
     <View style={styles.indicator}>
@@ -28,7 +29,11 @@ const MapScreen = ({ route }) => {
   }
 
   if (error) {
-    return <Text>Error: {error}</Text>;
+    return (
+      <Text>
+        {text.error} {error}
+      </Text>
+    );
   }
 
   return (
@@ -57,7 +62,7 @@ const MapScreen = ({ route }) => {
           onPress={() => setOpenModal(!openModal)}
           style={styles.buttonPrimary}
         >
-          <Text style={styles.buttonPrimaryText}>Solicitar Cita</Text>
+          <Text style={styles.buttonPrimaryText}>{text.bookMoto}</Text>
         </TouchableOpacity>
 
         <View style={styles.spacer} />
@@ -66,26 +71,23 @@ const MapScreen = ({ route }) => {
           onPress={() => navigation.navigate("ListMotoScreen")}
           style={styles.buttonSecondary}
         >
-          <Text style={styles.buttonSecondaryText}>Volver</Text>
+          <Text style={styles.buttonSecondaryText}>{text.goBack}</Text>
         </TouchableOpacity>
       </View>
 
       <Modal visible={openModal} animationType="slide">
         <View style={styles.centeredView}>
-          <Image
-            source={require("../../assets/images/mapitme_logo.jpg")}
-            style={styles.logo}
-          />
+          <Image source={images.modalLogo} style={styles.logo} />
           <View style={styles.spacerLogo} />
 
-          <Text style={styles.modalTitle}>Moto Confirmada!</Text>
+          <Text style={styles.modalTitle}>{text.confirmedMoto}</Text>
         </View>
         <View style={styles.paddingButton}>
           <TouchableOpacity
             onPress={() => setOpenModal(!openModal)}
             style={styles.buttonPrimary}
           >
-            <Text style={styles.buttonPrimaryText}>OK</Text>
+            <Text style={styles.buttonPrimaryText}>{text.ok}</Text>
           </TouchableOpacity>
         </View>
       </Modal>

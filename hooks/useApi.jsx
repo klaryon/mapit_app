@@ -1,23 +1,20 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 
-const useApi = (url, param) => {
+const useApi = (fn) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getData();
+    getBaseData();
   }, []);
 
-  const getData = async () => {
+  const getBaseData = async () => {
     try {
-      const response = await axios.get(url, {
-        params: param,
-      });
-      setData(response.data);
+      const response = await fn();
+      setData(response);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "An error occurred");
     } finally {
       setLoading(false);
     }
