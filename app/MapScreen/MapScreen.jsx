@@ -3,13 +3,15 @@ import {
   SafeAreaView,
   View,
   Text,
-  Button,
+  TouchableOpacity,
   ActivityIndicator,
   Modal,
+  Image,
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
 import useApi from "../../hooks/useApi";
+import { styles } from "./Styles";
 
 const MapScreen = ({ route }) => {
   const { id } = route.params;
@@ -20,7 +22,9 @@ const MapScreen = ({ route }) => {
   );
 
   if (loading) {
-    return <ActivityIndicator size="large" color="#dc182d" />;
+    <View style={styles.indicator}>
+      <ActivityIndicator size="large" color="#dc182d" />
+    </View>;
   }
 
   if (error) {
@@ -28,9 +32,9 @@ const MapScreen = ({ route }) => {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.safeArea}>
       <MapView
-        style={{ flex: 1 }}
+        style={styles.mapView}
         initialRegion={{
           latitude: data?.coordenadas?.latitud,
           longitude: data?.coordenadas?.longitud,
@@ -48,25 +52,41 @@ const MapScreen = ({ route }) => {
         />
       </MapView>
 
-      <View style={{ padding: 16 }}>
-        <Button
-          title="Close"
-          onPress={() => navigation.navigate("ListMotoScreen")}
-        />
-        <Button
-          title="Book Appointment"
+      <View style={styles.paddingMapFooter}>
+        <TouchableOpacity
           onPress={() => setOpenModal(!openModal)}
-        />
+          style={styles.buttonPrimary}
+        >
+          <Text style={styles.buttonPrimaryText}>Solicitar Cita</Text>
+        </TouchableOpacity>
+
+        <View style={styles.spacer} />
+
+        <TouchableOpacity
+          onPress={() => navigation.navigate("ListMotoScreen")}
+          style={styles.buttonSecondary}
+        >
+          <Text style={styles.buttonSecondaryText}>Volver</Text>
+        </TouchableOpacity>
       </View>
 
-      <Modal visible={openModal} transparent={true} animationType="slide">
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Text style={{ fontSize: 18, marginBottom: 20 }}>
-            Motocycle Confirmed!
-          </Text>
-          <Button title="OK" onPress={() => setOpenModal(!openModal)} />
+      <Modal visible={openModal} animationType="slide">
+        <View style={styles.centeredView}>
+          <Image
+            source={require("../../assets/images/mapitme_logo.jpg")}
+            style={styles.logo}
+          />
+          <View style={styles.spacerLogo} />
+
+          <Text style={styles.modalTitle}>Moto Confirmada!</Text>
+        </View>
+        <View style={styles.paddingButton}>
+          <TouchableOpacity
+            onPress={() => setOpenModal(!openModal)}
+            style={styles.buttonPrimary}
+          >
+            <Text style={styles.buttonPrimaryText}>OK</Text>
+          </TouchableOpacity>
         </View>
       </Modal>
     </SafeAreaView>
