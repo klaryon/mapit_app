@@ -9,29 +9,17 @@ export const styles = StyleSheet.create({
   mapView: {
     flex: 1,
   },
-  indicator: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  spacer: {
-    height: 15,
-  },
   paddingMapFooter: {
     paddingHorizontal: 20,
     paddingVertical: 25,
+  },
+  spacer: {
+    height: 15,
   },
   centeredView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  modalTitle: {
-    fontSize: 20,
-    color: colors.black,
-  },
-  modalText: {
-    fontSize: 10,
   },
   logo: {
     width: 75,
@@ -40,6 +28,10 @@ export const styles = StyleSheet.create({
   },
   spacerLogo: {
     height: 60,
+  },
+  modalTitle: {
+    fontSize: 20,
+    color: colors.black,
   },
   paddingButton: {
     paddingHorizontal: 20,
