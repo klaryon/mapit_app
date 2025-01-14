@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
 import FlexButton from "../FlexButton";
-import styles from "../Styles";
+import styles from "../styles";
 
 describe("FlexButton Component", () => {
   it("renders flex button with default props", () => {

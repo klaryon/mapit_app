@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import colors from "../../constants/Colors";
+import colors from "../../constants/colors";
 
 export const styles = StyleSheet.create({
   safeArea: {
@@ -12,15 +12,15 @@ export const styles = StyleSheet.create({
     height: 75,
     resizeMode: "contain",
   },
+  spacer: {
+    height: 40,
+  },
   separator: {
     borderBottomWidth: 1,
     borderBottomColor: colors.lightGrey,
   },
   touchableOpacity: {
     padding: 16,
-  },
-  spacer: {
-    height: 40,
   },
 });
 

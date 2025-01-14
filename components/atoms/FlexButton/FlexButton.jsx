@@ -1,5 +1,5 @@
 import { TouchableOpacity, Text } from "react-native";
-import styles from "./Styles";
+import styles from "./styles";
 const FlexButton = ({ title = "", onPress, type = "primary" }) => {
   return (
     <TouchableOpacity
