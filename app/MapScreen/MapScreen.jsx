@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { SafeAreaView, View, Text, Modal, Image } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
-import { styles } from "./Styles";
+import { styles } from "./styles";
 import useApi from "../../hooks/useApi";
 import { fetchDataById } from "@/api/apiEndpoints";
-import images from "../../constants/Images";
-import text from "../../constants/Text";
-import colors from "../../constants/Colors";
+import images from "../../constants/images";
+import text from "../../constants/text";
+import colors from "../../constants/colors";
 import IndicatorActivity from "../../components/atoms/IndicatorActivity/IndicatorActivity";
 import FlexButton from "../../components/atoms/FlexButton/FlexButton";
 

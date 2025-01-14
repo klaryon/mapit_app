@@ -1,5 +1,5 @@
 import { ActivityIndicator, View } from "react-native";
-import styles from "./Styles";
+import styles from "./styles";
 const IndicatorActivity = ({
   size = 0,
   color = "",

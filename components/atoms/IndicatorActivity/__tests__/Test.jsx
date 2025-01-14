@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
 import IndicatorActivity from "../IndicatorActivity";
-import colors from "../../../../constants/Colors";
+import colors from "../../../../constants/colors";
 
 describe("IndicatorActivity Component", () => {
   it("renders the ActivityIndicator with default props", () => {
