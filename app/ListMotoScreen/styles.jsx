@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
+import colors from "../../constants/Colors";
 
 export const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#FFF",
+    backgroundColor: colors.white,
     padding: 16,
   },
   logo: {
@@ -13,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   separator: {
     borderBottomWidth: 1,
-    borderBottomColor: "#E0E0E0",
+    borderBottomColor: colors.lightGrey,
   },
   touchableOpacity: {
     padding: 16,
@@ -21,9 +22,6 @@ export const styles = StyleSheet.create({
   spacer: {
     height: 40,
   },
-  indicator: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
 });
+
+export default styles;

@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
+import colors from "../../constants/Colors";
 
 export const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#FFF",
+    backgroundColor: colors.white,
   },
   mapView: {
     flex: 1,
@@ -12,30 +13,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  buttonPrimary: {
-    backgroundColor: "#dc182d",
-    borderColor: "#dc182d",
-    borderWidth: 1,
-    padding: 12,
-    borderRadius: 25,
-  },
-  buttonSecondary: {
-    backgroundColor: "#FFF",
-    borderColor: "#dc182d",
-    borderWidth: 1,
-    padding: 12,
-    borderRadius: 25,
-  },
-  buttonPrimaryText: {
-    color: "#FFF",
-    fontSize: 16,
-    textAlign: "center",
-  },
-  buttonSecondaryText: {
-    color: "#dc182d",
-    fontSize: 16,
-    textAlign: "center",
   },
   spacer: {
     height: 15,
@@ -51,7 +28,7 @@ export const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 20,
-    color: "#000",
+    color: colors.black,
   },
   modalText: {
     fontSize: 10,
@@ -69,3 +46,5 @@ export const styles = StyleSheet.create({
     paddingVertical: 25,
   },
 });
+
+export default styles;
