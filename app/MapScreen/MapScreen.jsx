@@ -10,12 +10,17 @@ import text from "../../constants/text";
 import colors from "../../constants/colors";
 import IndicatorActivity from "../../components/atoms/IndicatorActivity/IndicatorActivity";
 import FlexButton from "../../components/atoms/FlexButton/FlexButton";
+import { calculateDepreciation } from "../../utils/depreciation";
 
 const MapScreen = ({ route }) => {
   const { id } = route.params;
   const [openModal, setOpenModal] = useState(false);
   const navigation = useNavigation();
   const { data, loading, error } = useApi(() => fetchDataById(id));
+  const depreciation = calculateDepreciation(
+    data?.precioCompra,
+    data?.fechaCompra
+  );
 
   if (loading) {
     return (
@@ -57,14 +62,20 @@ const MapScreen = ({ route }) => {
       </MapView>
 
       <View style={styles.paddingMapFooter}>
+        <View style={styles.repurchaseContainer}>
+          <Text style={styles.repurchase}>
+            {text.repurchaseValue} {text.euro}
+            {depreciation}
+          </Text>
+        </View>
+
+        <View style={styles.spacer} />
         <FlexButton
           title={text.bookMoto}
           onPress={() => setOpenModal(!openModal)}
           type="primary"
         />
-
         <View style={styles.spacer} />
-
         <FlexButton
           title={text.goBack}
           onPress={() => navigation.navigate("ListMotoScreen")}

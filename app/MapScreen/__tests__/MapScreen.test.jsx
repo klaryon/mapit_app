@@ -4,6 +4,9 @@ import MapScreen from "../MapScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import useApi from "../../../hooks/useApi";
 jest.mock("../../../hooks/useApi", () => jest.fn());
+jest.mock("../../../utils/depreciation", () => ({
+  calculateDepreciation: jest.fn(),
+}));
 
 describe("MapScreen", () => {
   it("renders loading state", () => {
