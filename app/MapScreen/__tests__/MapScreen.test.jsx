@@ -2,14 +2,14 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react-native";
 import MapScreen from "../MapScreen";
 import { useNavigation } from "@react-navigation/native";
-import useApi from "../../../hooks/useApi";
+import useApi from "../../../hooks/useApi/useApi";
 import { getLocales } from "expo-localization";
-jest.mock("../../../hooks/useApi", () => jest.fn());
+jest.mock("../../../hooks/useApi/useApi", () => jest.fn());
 
 jest.mock("@react-navigation/native", () => ({
   useNavigation: jest.fn(),
 }));
-jest.mock("../../../utils/depreciation", () => ({
+jest.mock("../../../utils/depreciation/depreciation", () => ({
   calculateDepreciation: jest.fn(),
 }));
 jest.mock("expo-localization", () => ({

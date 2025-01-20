@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
-import useApi from "../../hooks/useApi";
+import useApi from "../../hooks/useApi/useApi";
 import { fetchBaseData } from "@/api/apiEndpoints";
 import images from "../../constants/images";
 import text from "../../constants/text";
