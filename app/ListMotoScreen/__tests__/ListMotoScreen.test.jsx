@@ -2,9 +2,9 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
 import ListMotoScreen from "../ListMotoScreen";
 import { useNavigation } from "@react-navigation/native";
-import useApi from "../../../hooks/useApi";
+import useApi from "../../../hooks/useApi/useApi";
 
-jest.mock("../../../hooks/useApi", () => jest.fn());
+jest.mock("../../../hooks/useApi/useApi", () => jest.fn());
 
 jest.mock("@react-navigation/native", () => ({
   useNavigation: jest.fn(),
