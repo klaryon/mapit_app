@@ -3,14 +3,14 @@ import { SafeAreaView, View, Text, Modal, Image } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
-import useApi from "../../hooks/useApi";
+import useApi from "../../hooks/useApi/useApi";
 import { fetchDataById } from "@/api/apiEndpoints";
 import images from "../../constants/images";
 import text from "../../constants/text";
 import colors from "../../constants/colors";
 import IndicatorActivity from "../../components/atoms/IndicatorActivity/IndicatorActivity";
 import FlexButton from "../../components/atoms/FlexButton/FlexButton";
-import { calculateDepreciation } from "../../utils/depreciation";
+import { calculateDepreciation } from "../../utils/depreciation/depreciation";
 import { getLocales } from "expo-localization";
 
 const MapScreen = ({ route }) => {
