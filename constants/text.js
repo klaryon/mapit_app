@@ -5,7 +5,6 @@ const text = {
   ok: "OK",
   error: "Error:",
   repurchaseValue: "Valor de la recompra: ",
-  euro: "€",
 };
 
 export default text;

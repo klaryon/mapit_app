@@ -11,6 +11,7 @@ import colors from "../../constants/colors";
 import IndicatorActivity from "../../components/atoms/IndicatorActivity/IndicatorActivity";
 import FlexButton from "../../components/atoms/FlexButton/FlexButton";
 import { calculateDepreciation } from "../../utils/depreciation";
+import { getLocales } from "expo-localization";
 
 const MapScreen = ({ route }) => {
   const { id } = route.params;
@@ -21,6 +22,9 @@ const MapScreen = ({ route }) => {
     data?.precioCompra,
     data?.fechaCompra
   );
+
+  const locale = getLocales()[0];
+  const currencySymbol = locale.currencySymbol;
 
   if (loading) {
     return (
@@ -47,8 +51,8 @@ const MapScreen = ({ route }) => {
         initialRegion={{
           latitude: data?.coordenadas?.latitud,
           longitude: data?.coordenadas?.longitud,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
         }}
       >
         <Marker
@@ -64,7 +68,8 @@ const MapScreen = ({ route }) => {
       <View style={styles.paddingMapFooter}>
         <View style={styles.repurchaseContainer}>
           <Text style={styles.repurchase}>
-            {text.repurchaseValue} {text.euro}
+            {text.repurchaseValue}
+            {currencySymbol}
             {depreciation}
           </Text>
         </View>
