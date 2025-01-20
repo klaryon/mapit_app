@@ -13,6 +13,13 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 25,
   },
+  repurchaseContainer: {
+    alignItems: "center",
+  },
+  repurchase: {
+    fontSize: 20,
+    color: colors.black,
+  },
   spacer: {
     height: 15,
   },

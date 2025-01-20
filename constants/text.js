@@ -4,6 +4,7 @@ const text = {
   confirmedMoto: "Moto Confirmada!",
   ok: "OK",
   error: "Error:",
+  repurchaseValue: "Valor de la recompra: ",
 };
 
 export default text;
